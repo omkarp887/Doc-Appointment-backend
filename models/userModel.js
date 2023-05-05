@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
-const userSchema = mongoose.Schema(
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,10 +14,28 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-  },{
+    isDoctor: {
+      type: Boolean,
+      default: false,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    seenNotify: {
+      type: Array,
+      default: [],
+    },
+    unseenNotify: {
+      type: Array,
+      default: [],
+    },
+  },
+  {
     timestamps: true,
   }
 );
 
-const userModel = mongoose.model('users', userSchema);
+const userModel = mongoose.model("users", userSchema);
+
 module.exports = userModel;
